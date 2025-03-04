@@ -1,1 +1,2 @@
+cd volunteer_management
 web: gunicorn volunteer_management.wsgi
