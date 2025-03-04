@@ -1,1 +1,1 @@
-web: volunteer_management.wsgi
+web: gunicorn volunteer_management.wsgi
