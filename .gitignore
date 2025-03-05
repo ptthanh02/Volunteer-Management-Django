@@ -13,7 +13,6 @@ __pycache__/
 # Django specific
 *.log
 local_settings.py
-db.sqlite3
 db.sqlite3-journal
 media/
 
@@ -42,5 +41,5 @@ coverage.xml
 .env
 .env.local
 
-# Static files collected by Django
-staticfiles/
+# Backup files
+backup_db/
