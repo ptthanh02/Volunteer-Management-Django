@@ -10,5 +10,5 @@ pandas==2.2.2
 scikit-learn==1.4.2
 pillow==10.2.0
 gunicorn==23.0.0
-whitenois==6.9.0
+whitenoise==6.9.0
 
