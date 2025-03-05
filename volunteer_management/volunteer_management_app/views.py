@@ -280,6 +280,7 @@ def like_event(request):
 
 @login_required
 def event_detail(request, event_id):
+    # Get the event or return a 404 error
     event = get_object_or_404(
         VolunteerEventPost.objects.prefetch_related(
             'user_relations',
@@ -304,35 +305,32 @@ def event_detail(request, event_id):
         pk=event_id
     )
 
-    if request.user.is_authenticated:
-        user_relation, created = UserEventRelation.objects.get_or_create(
+    # If user is authenticated, process event details
+    user_relation, created = UserEventRelation.objects.get_or_create(
+        user=request.user,
+        event=event,
+        relation_type='viewed'
+    )
+
+    event.views += 1
+    event.save(update_fields=['views'])
+    
+    try:
+        user_relation = event.user_relations.get(
             user=request.user,
-            event=event,
-            relation_type='viewed'
+            relation_type='liked'
         )
-
-        event.views += 1
-        event.save(update_fields=['views'])
-        
-        try:
-            user_relation = event.user_relations.get(
-                user=request.user,
-                relation_type='liked'
-            )
-            event.liked = True
-        except UserEventRelation.DoesNotExist:
-            event.liked = False
-
-        try:
-            user_relation = event.user_relations.get(
-                user=request.user,
-                relation_type='attended'
-            )
-            event.is_user_attended = True
-        except UserEventRelation.DoesNotExist:
-            event.is_user_attended = False
-    else:
+        event.liked = True
+    except UserEventRelation.DoesNotExist:
         event.liked = False
+
+    try:
+        user_relation = event.user_relations.get(
+            user=request.user,
+            relation_type='attended'
+        )
+        event.is_user_attended = True
+    except UserEventRelation.DoesNotExist:
         event.is_user_attended = False
 
     context = {
@@ -597,6 +595,10 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            # Check for a 'next' parameter and redirect accordingly
+            next_url = request.GET.get('next')
+            if next_url:
+                return redirect(next_url)
             if user.is_superuser == True:
                 return redirect('/admin/')
             return activities(request) # redirect to activities page

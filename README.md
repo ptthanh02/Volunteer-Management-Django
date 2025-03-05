@@ -1,96 +1,89 @@
-# **About Project**
-**Dự Án Quản Lý Hoạt Động Tình Nguyện (Volunteer Management)** là đề tài cuối kỳ của môn Công Nghệ Mới Trong Phát Triển Ứng Dụng. Trong dự án này, chúng tôi sẽ phát triển một ứng dụng web bằng Django, nhằm hỗ trợ tổ chức tình nguyện trong việc quản lý và theo dõi các hoạt động tình nguyện.
+# 🌟 Hệ Thống Quản Lý Hoạt Động Tình Nguyện
 
-<details>
-   <summary><strong>👇Hướng dẫn và các lệnh làm việc với Django</strong></summary>
+![Project Banner](https://homepage.momocdn.net/img/momo-upload-api-220617165559-637910817596648573.jpg)
 
-# **Django commands and tips for development**
+## 🚀 Tổng Quan Dự Án
 
-## I.Tạo project mới:
-Mở terminal và di chuyển đến thư mục mà bạn muốn tạo project mới. Sau đó chạy lệnh sau:
+Hệ Thống Quản Lý Hoạt Động Tình Nguyện là một ứng dụng web toàn diện được phát triển như là đồ án cuối kỳ cho môn học "Công Nghệ Mới Trong Phát Triển Ứng Dụng". Mục tiêu của chúng tôi là tạo ra một nền tảng trực quan để quản lý và theo dõi các hoạt động tình nguyện bằng Django.
 
-### 1. Tạo môi trưởng ảo: 
-Tạo môi trường ảo với tên là `py3.12_venv` tại thư mục của project
+### 🔗 Liên Kết
+- **Demo Trực Tuyến:** [Hệ Thống Quản Lý Tình Nguyện](https://volunteer-management-django.onrender.com) (Có Thể Mất Vài Phút Để Khởi Động)
+
+## 🔑 Thông Tin Đăng Nhập Để Kiểm Thử
+
+### Quyền Quản Trị
+- **Tên đăng nhập:** `admin`
+- **Mật khẩu:** `123`
+
+### Người Dùng Thông Thường
+- **Tên đăng nhập:** `ptthanh02`
+- **Mật khẩu:** `Tt123456`
+
+## ✨ Tính Năng Chính
+
+| Tính Năng | Mô Tả | Trạng Thái |
+|---------|-------------|--------|
+| 📅 Quản Lý Sự Kiện | Tạo, chỉnh sửa và theo dõi sự kiện tình nguyện | ✅ Đã Hoàn Thiện |
+| 🔐 Xác Thực Người Dùng | Hệ thống đăng ký và đăng nhập an toàn | ✅ Đã Hoàn Thiện |
+| 🤝 Tham Gia Sự Kiện | Đăng ký và đánh dấu sự kiện yêu thích dễ dàng | ✅ Đã Hoàn Thiện |
+| 💸 Hệ Thống Quyên Góp | Hỗ trợ đóng góp tài chính cho sự kiện | ✅ Đã Hoàn Thiện |
+| 📝 Báo Cáo Sự Kiện | Gửi và quản lý báo cáo sau sự kiện | ✅ Đã Hoàn Thiện |
+| 🔍 Tìm Kiếm & Lọc | Tính năng khám phá sự kiện nâng cao | ✅ Đã Hoàn Thiện |
+| 📊 Bảng Điều Khiển Cá Nhân | Quản lý thông tin và hoạt động cá nhân | ✅ Đã Hoàn Thiện |
+
+## 🛠️ Hướng Dẫn Cài Đặt Ở Local
+
+### Điều Kiện Tiên Quyết
+- 🐍 Python 3.12+
+- 🌐 Django 5.0.3+
+- 💻 Hỗ Trợ Môi Trường Ảo
+
+### Các Bước Cài Đặt
+
+#### 1. Sao Chép Kho Mã Nguồn
 ```bash
-python -m venv py3.12_venv
+git clone https://github.com/ptthanh02/Volunteer-Management-Django.git
+cd Volunteer-Management-Django
 ```
-### 2. Kích hoạt môi trường ảo:
+
+#### 2. Tạo Môi Trường Ảo
 ```bash
-py3.12_venv\Scripts\activate 
+# Trên macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+
+# Trên Windows
+python -m venv venv
+venv\Scripts\activate
 ```
-### 3. Cài đặt các thư viện cần thiết:
+
+#### 3. Cài Đặt Các Phụ Thuộc
 ```bash
 pip install -r requirements.txt
 ```
-### 4. Tạo project mới:
-Tạo project Django mới với tên là `volunteer_management` tại thư mục hiện tại
-```bash
-django-admin startproject volunteer_management
-```
 
-### 5. Tạo app mới:
-Tạo app mới với tên là `volunteer_app` tại thư mục hiện tại
+#### 4. Thiết Lập Cơ Sở Dữ Liệu
 ```bash
-cd volunteer_management
-```
-```bash
-python manage.py startapp volunteer_app
-```
-
-- Để thêm app mới vào project, mở file `volunteer_management/settings.py` và thêm tên app vào `INSTALLED_APPS`:
-```python
-INSTALLED_APPS = [
-    ...
-    'volunteer_management_app',
-    ...
-]
-```
-
-### 6. Chạy thử server:
-```bash
-python manage.py runserver
-```
-- Mở trình duyệt và truy cập vào địa chỉ [http://127.0.0.1:8000/](http://127.0.0.1:8000/), nếu bạn thấy trang web như hình dưới đây thì đã cài đặt thành công:
-![alt text](README_images/image.png)
-
-## II. Các lệnh thường dùng để làm việc với Django:
-
-### Kích hoạt môi trường ảo trước khi làm việc:
-```bash
-py3.12_venv\Scripts\activate 
-```
-
-### 1. Tạo database:
-```bash
-python manage.py makemigrations volunteer_management_app
-```
-
-### 2. Migrate database:
-```bash
+# Tạo migration cho cơ sở dữ liệu
+python manage.py makemigrations
 python manage.py migrate
-```
 
-### 3. Tạo superuser:
-```bash
+# Tạo tài khoản quản trị
 python manage.py createsuperuser
 ```
 
-### 4. Chạy server:
+#### 5. Chạy Máy Chủ Phát Triển
 ```bash
 python manage.py runserver
 ```
-### 5. Chạy test case:
-```bash
-python manage.py test volunteer_management_app
-```
+🌐 Truy Cập: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-### 6. Mở shell:
-```bash
-python manage.py shell
-```
+## 🧪 Các Lệnh Hữu Ích
 
-### 7. Tạo file requirements.txt:
-```bash
-pip freeze > requirements.txt
-```
-</details>
+| Lệnh | Mô Tả |
+|---------|-------------|
+| `python manage.py test` | Chạy các bài kiểm tra của dự án |
+| `python manage.py collectstatic` | Thu thập các tập tin tĩnh |
+| `python manage.py flush` | Đặt lại cơ sở dữ liệu (sử dụng cẩn thận) |
+
+---
